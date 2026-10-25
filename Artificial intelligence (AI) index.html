@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دنیای هوش مصنوعی | نیلوفر محوی</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #07111f;
+            color: white;
+            line-height: 1.8;
+        }
+
+        /* منو */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(7, 17, 31, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #203452;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #00e5ff;
+        }
+
+        /* صفحه اصلی */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            background:
+                linear-gradient(rgba(3,10,20,.7), rgba(3,10,20,.9)),
+                url("https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 7vw, 80px);
+            color: #00e5ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 25px rgba(0,229,255,.5);
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: #dce8f5;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 30px;
+            border-radius: 30px;
+            background: #00e5ff;
+            color: #001018;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px #00e5ff;
+        }
+
+        /* بخش‌ها */
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 38px;
+            color: #00e5ff;
+            margin-bottom: 45px;
+        }
+
+        .intro {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            font-size: 18px;
+            color: #c9d5e4;
+        }
+
+        /* کارت‌ها */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #0d1b2e;
+            border: 1px solid #203b5d;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #00e5ff;
+            box-shadow: 0 10px 35px rgba(0,229,255,.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card h3 {
+            color: #00e5ff;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #c4d0df;
+        }
+
+        /* آینده */
+        .future {
+            background: linear-gradient(135deg, #0b1d32, #101d35);
+            max-width: none;
+        }
+
+        .future-content {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .future-content p {
+            font-size: 19px;
+            color: #d6e0ec;
+        }
+
+        /* تهیه کننده */
+        .creator {
+            text-align: center;
+            background: #0b1728;
+            border: 1px solid #1e3958;
+            border-radius: 25px;
+            padding: 50px 25px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .creator-icon {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00e5ff, #476cff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .creator h3 {
+            font-size: 30px;
+            color: #00e5ff;
+        }
+
+        /* فوتر */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #030914;
+            color: #9fb0c5;
+            border-top: 1px solid #1b304b;
+        }
+
+        footer strong {
+            color: #00e5ff;
+        }
+
+        @media (max-width: 700px) {
+            .menu {
+                display: none;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- منو -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">🤖 AI WORLD</div>
+
+            <ul class="menu">
+                <li><a href="#home">خانه</a></li>
+                <li><a href="#about">هوش مصنوعی</a></li>
+                <li><a href="#uses">کاربردها</a></li>
+                <li><a href="#future">آینده</a></li>
+                <li><a href="#creator">تهیه‌کننده</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- خانه -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>دنیای هوش مصنوعی</h1>
+
+            <p>
+                سفری به دنیای شگفت‌انگیز هوش مصنوعی،
+                فناوری‌ای که در حال تغییر زندگی انسان‌ها و آینده جهان است.
+            </p>
+
+            <a class="button" href="#about">شروع سفر 🚀</a>
+        </div>
+    </header>
+
+    <!-- معرفی -->
+    <section id="about">
+        <h2 class="section-title">هوش مصنوعی چیست؟</h2>
+
+        <p class="intro">
+            هوش مصنوعی یا Artificial Intelligence به فناوری‌هایی گفته می‌شود
+            که به کامپیوترها و ماشین‌ها کمک می‌کنند وظایفی را انجام دهند
+            که معمولاً به توانایی‌های انسانی مانند یادگیری، تشخیص،
+            تصمیم‌گیری و حل مسئله نیاز دارند.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>🧠 یادگیری ماشین</h3>
+                    <p>
+                        سیستم‌ها می‌توانند از داده‌ها یاد بگیرند
+                        و بدون برنامه‌نویسی مستقیم، الگوها را پیدا کنند.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>👁️ بینایی ماشین</h3>
+                    <p>
+                        هوش مصنوعی می‌تواند تصاویر و ویدیوها را
+                        بررسی و اطلاعات موجود در آن‌ها را تشخیص دهد.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>💬 پردازش زبان</h3>
+                    <p>
+                        سیستم‌های هوشمند می‌توانند زبان انسان را
+                        درک، ترجمه و تولید کنند.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- کاربردها -->
+    <section id="uses">
+        <h2 class="section-title">کاربردهای هوش مصنوعی</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>🏥 پزشکی</h3>
+                    <p>
+                        کمک به پزشکان در بررسی تصاویر پزشکی،
+                        تحلیل داده‌ها و تشخیص برخی بیماری‌ها.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>💻 برنامه‌نویسی</h3>
+                    <p>
+                        کمک به برنامه‌نویسان برای نوشتن،
+                        بررسی و توضیح کدهای کامپیوتری.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>🏭 صنعت</h3>
+                    <p>
+                        استفاده از ربات‌ها و سیستم‌های هوشمند
+                        برای افزایش سرعت و دقت تولید.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>🎓 آموزش</h3>
+                    <p>
+                        آموزش شخصی‌سازی‌شده و کمک به دانش‌آموزان
+                        برای یادگیری بهتر.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- آینده -->
+    <div class="future" id="future">
+        <section>
+            <div class="future-content">
+                <h2 class="section-title">🚀 آینده هوش مصنوعی</h2>
+
+                <p>
+                    هوش مصنوعی در حال پیشرفت بسیار سریع است.
+                    در آینده می‌تواند نقش مهمی در پزشکی، آموزش،
+                    حمل‌ونقل، صنعت، علوم و بسیاری از بخش‌های زندگی
+                    انسان داشته باشد.
+                </p>
+
+                <br>
+
+                <p>
+                    استفاده درست و مسئولانه از این فناوری می‌تواند
+                    فرصت‌های جدیدی برای انسان‌ها ایجاد کند.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- تهیه کننده -->
+    <section id="creator">
+        <h2 class="section-title">تهیه‌کننده سایت</h2>
+
+        <div class="creator">
+            <div class="creator-icon">👩‍💻</div>
+
+            <h3>نیلوفر محوی</h3>
+
+            <p>
+                تهیه‌کننده و طراح این وب‌سایت آموزشی
+                درباره هوش و دنیای هوش مصنوعی
+            </p>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <p>
+            © 2026 تمامی حقوق محفوظ است | تهیه‌کننده:
+            <strong>نیلوفر محوی</strong>
+        </p>
+    </footer>
+
+</body>
+</html>
